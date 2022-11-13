@@ -1,0 +1,173 @@
+---
+title: "Práctica IV: Respuesta en frecuencia de sistemas LTI"
+subtitle: "Señales y Sistemas, Grado en Ciencia de Datos - UV"
+author: "Sandra Paniagua Sánchez y Gema Bravo Aguilera"
+date:  "`r Sys.Date()`"  # Fecha del día actual
+header-includes: |
+      \usepackage{fancyhdr}
+      \pagestyle{fancy}
+      \fancyhead[RO,LE]{\includegraphics[width=186px]{universidad.png}}
+      \fancyhead[LO,LE]{ \textbf {Grado en Ciencia de Datos} \\\textbf {Prácticas de Señales y Sistemas }}
+      
+output:
+  # html_document:
+  #   echo: yes
+  #   number_sections: no
+  #   theme: lumen
+  #   toc: yes
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+    number_sections: no
+---
+
+```{r setup, cache=F, echo=F, message=F, warning=F, tidy=F}
+# CONFIGURACIÓN GENERAL
+library(knitr)
+options(width=100)
+# Opciones generales chunks
+opts_chunk$set(echo=TRUE, message=F, error=F, warning=F,
+               comment=NA, fig.align='center', dpi=100, tidy=F,
+               cache.path='./cache/', fig.path='./figure/')
+
+# options(xtable.type='html')
+knit_hooks$set(inline=function(x) {
+  if(is.numeric(x)) {
+    round(x, getOption('digits'))
+  } else {
+    paste(as.character(x), collapse=', ')
+  }
+})
+# knit_hooks$set(plot=knitr:::hook_plot_html)
+```
+
+```{r, include=F}
+# Especificamos las librerías necesarias en esta lista
+packages=c("tidyverse", "knitr", "ggplot2", "datasets", "RColorBrewer", "dplyr", "lubridate", "kableExtra", "ramify", "signal", "tuneR", "sound", "seewave", "signal")
+# use this function to check if each package is on the local machine
+# if a package is installed, it will be loaded
+# if any are not, the missing package(s) will be installed and loaded
+package.check <- lapply(packages, FUN=function(x) {
+  if (!require(x, character.only=TRUE)) {
+    install.packages(x, dependencies=TRUE,repos='http://cran.rediris.es')
+    library(x, character.only=TRUE)
+  }
+})
+# verify they are loaded
+search()
+```
+
+\newpage
+
+# Práctica IV: Respuesta en frecuencia de sistemas LTI
+
+# 1. Objetivos
+En esta práctica se estudia la respuesta en frecuencia de los sistemas LTI (discretos, los continuos se
+muestran en un Anexo que no forma parte de la práctica). Veremos cómo la podemos utilizar para
+determinar la salida en el estado estacionario de un sistema dada una entrada. Se analizarán sistemas
+con una determinada función de transferencia y, por otra parte, se dise˜nar´an sistemas para obtener una
+respuesta en frecuencia.
+
+# 2. Prelaboratorio:
+*Explica la relación entre la transformada de Fourier y la transformada Z*
+
+
+
+## 2.1. Sistemas discretos
+
+En este apartado estudiaremos la relación que hay entre la posición de los polos y ceros de una transformada Z de un determinado sistema y su respuesta en frecuencia. Para ello consideraremos funciones de
+transferencia de la forma:
+
+
+¿Cómo se relacionan r y w0 con los ceros y polos en el dominio de la transformada Z (zplane)? Determina
+la respuesta impulsional (impz) y la respuesta en frecuencia (freqz) para diferentes valores de r (mayores,
+cercanos y menores que la unidad) y w0. ¿Qué efectos tienen estos par´ametros sobre la respuesta en
+frecuencia?
+
+**Paso 1 **
+Determinar los vecores de cada entrada:
+
+Para H1:
+num1 = c(1, -2*r*cos(w0), r^2)
+den1 = c(1)
+
+Para H2:
+num2 = c(1)
+den2 = c(1, -2*r*cos(w0), r^2)
+
+Y ahora le daremos valores a w0 con un r fijo:
+```{r}
+#Para H1:
+
+r = 1
+w0 = pi /2
+
+num = c(1, -2*r*cos(w0), r^2)
+den = c(1)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+r = 1
+w0 = pi
+
+num = c(1, -2*r*cos(w0), r^2)
+den = c(1)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+r = 1
+w0 = pi /4
+
+num = c(1, -2*r*cos(w0), r^2)
+den = c(1)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+#Para H2:
+
+r = 1
+w0 = pi /2
+
+num = c(1)
+den = c(1, -2*r*cos(w0), r^2)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+r = 1
+w0 = pi
+
+num = c(1, -2*r*cos(w0), r^2)
+den = c(1)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+r = 1
+w0 = pi /4
+
+num = c(1, -2*r*cos(w0), r^2)
+den = c(1)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+```
+
+
+
