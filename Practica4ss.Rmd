@@ -148,8 +148,8 @@ freqz(num,den)
 r = 1
 w0 = pi
 
-num = c(1, -2*r*cos(w0), r^2)
-den = c(1)
+num = c(1)
+den = c(1, -2*r*cos(w0), r^2)
 
 zplane(num,den)
 impz(num,den, 10)
@@ -159,6 +159,24 @@ freqz(num,den)
 r = 1
 w0 = pi /4
 
+num = c(1)
+den = c(1, -2*r*cos(w0), r^2)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+```
+
+Y ahora le daremos valores a r con un w0 fijo:
+
+```{r}
+#Para H1:
+
+r = 0.5
+w0 = pi /2
+
 num = c(1, -2*r*cos(w0), r^2)
 den = c(1)
 
@@ -167,7 +185,69 @@ impz(num,den, 10)
 freqz(num,den)
 
 
+r = 0.75
+w0 = pi/2
+
+num = c(1, -2*r*cos(w0), r^2)
+den = c(1)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+r = 1.5
+w0 = pi /2
+
+num = c(1, -2*r*cos(w0), r^2)
+den = c(1)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+#Para H2:
+
+r = 0.5
+w0 = pi /2
+
+num = c(1)
+den = c(1, -2*r*cos(w0), r^2)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+r = 0.75
+w0 = pi/2
+
+num = c(1)
+den = c(1, -2*r*cos(w0), r^2)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
+r = 1.5
+w0 = pi /2
+
+num = c(1)
+den = c(1, -2*r*cos(w0), r^2)
+
+zplane(num,den)
+impz(num,den, 10)
+freqz(num,den)
+
+
 ```
+
+
+
+
+
 
 
 
