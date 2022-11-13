@@ -62,11 +62,7 @@ search()
 # Práctica IV: Respuesta en frecuencia de sistemas LTI
 
 # 1. Objetivos
-En esta práctica se estudia la respuesta en frecuencia de los sistemas LTI (discretos, los continuos se
-muestran en un Anexo que no forma parte de la práctica). Veremos cómo la podemos utilizar para
-determinar la salida en el estado estacionario de un sistema dada una entrada. Se analizarán sistemas
-con una determinada función de transferencia y, por otra parte, se dise˜nar´an sistemas para obtener una
-respuesta en frecuencia.
+En esta práctica se estudia la respuesta en frecuencia de los sistemas LTI (discretos, los continuos se muestran en un Anexo que no forma parte de la práctica). Veremos cómo la podemos utilizar para determinar la salida en el estado estacionario de un sistema dada una entrada. Se analizarán sistemas con una determinada función de transferencia y, por otra parte, se diseñarán sistemas para obtener una respuesta en frecuencia.
 
 # 2. Prelaboratorio:
 *Explica la relación entre la transformada de Fourier y la transformada Z*
@@ -75,17 +71,16 @@ respuesta en frecuencia.
 
 ## 2.1. Sistemas discretos
 
-En este apartado estudiaremos la relación que hay entre la posición de los polos y ceros de una transformada Z de un determinado sistema y su respuesta en frecuencia. Para ello consideraremos funciones de
-transferencia de la forma:
+En este apartado estudiaremos la relación que hay entre la posición de los polos y ceros de una transformada Z de un determinado sistema y su respuesta en frecuencia. Para ello consideraremos funciones de transferencia de la forma:
 
+$\hspace{4cm}H_1(z) = 1-2 \cdot r \cdot cos(w_0)\cdot z^{-1} + r^2 \cdot z^{-2}$
 
-¿Cómo se relacionan r y w0 con los ceros y polos en el dominio de la transformada Z (zplane)? Determina
-la respuesta impulsional (impz) y la respuesta en frecuencia (freqz) para diferentes valores de r (mayores,
-cercanos y menores que la unidad) y w0. ¿Qué efectos tienen estos par´ametros sobre la respuesta en
-frecuencia?
+$\hspace{4cm}H_2(z) = \frac{1}{H_1(z)}$
+
+¿Cómo se relacionan $r$ y $w_0$ con los ceros y polos en el dominio de la transformada Z (`zplane`)? Determina la respuesta impulsional (`impz`) y la respuesta en frecuencia (`freqz`) para diferentes valores de $r$ (mayores, cercanos y menores que la unidad) y $w_0$. ¿Qué efectos tienen estos parámetros sobre la respuesta en frecuencia?
 
 **Paso 1 **
-Determinar los vecores de cada entrada:
+- Determinar los vecores de cada entrada:
 
 Para H1:
 num1 = c(1, -2*r*cos(w0), r^2)
@@ -246,8 +241,30 @@ freqz(num,den)
 
 
 
+\newpage
+
+# 3. Laboratorio
+## 3.1 Sistemas discretos
+### 3.1.1 Filtro peine
+
+Un sistema digital muy empleado como filtro paso-bajo es lo que se conoce como promediador. La ecuación en diferencias de este filtro es:
+
+$$y(n) = \frac{1}{N} \sum^{N-1}_{k=0} x(n-k)$$
+
+Determina la respuesta impulsional y la respuesta en frecuencia del sistema para diferentes N (2,4 y 9). Calcula los polos y ceros de $H(z)$, ¿qué tienen de especial?¿Qué ocurre en los ceros de $H(z)$?
+
+### 3.1.2 Eliminación del ruido de red
+
+A continuación, se implementará una aplicación práctica en Ingeniería Biomédica, la eliminación del ruido de red en un electrocardiograma (ECG). Para ello utiliza el fichero `ecg.mat` que contiene un ECG contaminado por ruido de 50 Hz. Diseña un sistema digital para eliminar dicha interferencia mediante un análisis de polos/zeros de la Transformada Z (el ECG se ha adquirido con una frecuencia de muestreo de ECG de 1000 Hz). Implementa diferentes alternativas para eliminar este ruido.
+
+En este ECG aparece otra interferencia importante que es una variación de la línea basal que aparece en bajas frecuencias. Para eliminarla, usa el sistema definido por $H(z) = \frac{1-z^{-1}}{1- \mu z^{-1}}$.
 
 
+1. Compruébalo con la instrucción filter (considera $\mu=0.9$).
 
+2. Determina la respuesta en frecuencia del sistema y razona lo obtenido.
 
+3. ¿Qué controla el parámetro $\mu$?
+
+Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza los filtros que has utilizado en la práctica
 
