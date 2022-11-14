@@ -43,7 +43,7 @@ knit_hooks$set(inline=function(x) {
 
 ```{r, include=F}
 # Especificamos las librerías necesarias en esta lista
-packages=c("tidyverse", "knitr", "ggplot2", "datasets", "RColorBrewer", "dplyr", "lubridate", "kableExtra", "ramify", "signal", "tuneR", "sound", "seewave", "signal")
+packages=c("tidyverse", "knitr", "ggplot2", "datasets", "RColorBrewer", "dplyr", "lubridate", "kableExtra", "ramify", "signal", "tuneR", "sound", "seewave", "signal", "R.matlab")
 # use this function to check if each package is on the local machine
 # if a package is installed, it will be loaded
 # if any are not, the missing package(s) will be installed and loaded
@@ -305,6 +305,8 @@ freqz(a,b)
 
 
 
+los ceros están en el circulo unidad y los polos están en 0
+
 ### 3.1.2 Eliminación del ruido de red
 
 A continuación, se implementará una aplicación práctica en Ingeniería Biomédica, la eliminación del ruido de red en un electrocardiograma (ECG). Para ello utiliza el fichero `ecg.mat` que contiene un ECG contaminado por ruido de 50 Hz. Diseña un sistema digital para eliminar dicha interferencia mediante un análisis de polos/zeros de la Transformada Z (el ECG se ha adquirido con una frecuencia de muestreo de ECG de 1000 Hz). Implementa diferentes alternativas para eliminar este ruido.
@@ -314,21 +316,85 @@ En este ECG aparece otra interferencia importante que es una variación de la l�
 
 1. Compruébalo con la instrucción filter (considera $\mu=0.9$).
 
+```{r}
+ecg <- readMat("./ecg.mat")
+ecg <- ecg$ecg
+
+ruido <- 50
+muestreo <- 1000
+w0 <- 2*pi*ruido/muestreo 
+
+rc <- 1
+rp <- 1-(2*pi)/100
+
+x <- c(1,0,0,0,0,0,0)
+
+num <- c(1, -2*rc*cos(w0), rc^2) 
+den <- c(1, -2*rp*cos(w0), rp^2)
+
+zplane(num, den)
+
+impz(num, den, 35)
+
+freqz(num, den)
+
+y1 <- filter(num, den, ecg)
+
+# Representamos el ECG tras aplicar el primer filtro
+
+plot(y1, xlim=c(0,2500))
+
+#Aplicamos el segundo filtro para distintos valores de mu y representamos la señal con los dos filtros
+
+mu <- 0.9
+
+num1 <- c(1,-1)
+den1 <- c(1, -mu)
+
+y2 <- filter(num1, den1, y1)
+zplane(num1, den1)
+impz(num1, den1, 35)
+freqz(num1, den1)
+
+plot(y2, xlim=c(0,2500))
+
+mu <- 0.6
+
+num1 <- c(1,-1)
+den1 <- c(1, -mu)
+
+y2 <- filter(num1, den1, y1)
+zplane(num1, den1)
+impz(num1, den1, 35)
+freqz(num1, den1)
+
+plot(y2, xlim=c(0,2500))
+
+mu <- 0.3
+
+num1 <- c(1,-1)
+den1 <- c(1, -mu)
+
+y2 <- filter(num1, den1, y1)
+zplane(num1, den1)
+impz(num1, den1, 35)
+freqz(num1, den1)
+
+plot(y2, xlim=c(0,2500))
+
+```
+
+
 2. Determina la respuesta en frecuencia del sistema y razona lo obtenido.
 
 3. ¿Qué controla el parámetro $\mu$?
+El parámetro mu controla los polos
+
+wuolah:
+Como mu está en el denominador del segundo filtro, si modificamos mu estaríamos modificando los polos. Además, podemos observar que la respuesta impulsional a medida que mu se acerca a 1 se va atenuando y se aproxima más y más a 0.
 
 Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza los filtros que has utilizado en la práctica
 
 
 
 
-
-
-SOLUCIÓN:
-
-$r$ y $w_0$ se relacionan de tal manera que ambos determinan la posición de los ceros y los polos
-
-$r$ es la distancia al origen del plano complejo (módulo)
-
-$w_0$ determina el ángulo en el que se disponen
