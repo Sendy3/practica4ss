@@ -272,13 +272,3 @@ Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza
 
 
 
-
-
-
-SOLUCIÓN:
-
-$r$ y $w_0$ se relacionan de tal manera que ambos determinan la posición de los ceros y los polos
-
-$r$ es la distancia al origen del plano complejo (módulo)
-
-$w_0$ determina el ángulo en el que se disponen
