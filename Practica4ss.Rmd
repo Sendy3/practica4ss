@@ -240,6 +240,7 @@ freqz(num,den)
 
 ```
 
+
 \newpage
 
 # 3. Laboratorio
@@ -251,6 +252,55 @@ Un sistema digital muy empleado como filtro paso-bajo es lo que se conoce como p
 $$y(n) = \frac{1}{N} \sum^{N-1}_{k=0} x(n-k)$$
 
 Determina la respuesta impulsional y la respuesta en frecuencia del sistema para diferentes N (2,4 y 9). Calcula los polos y ceros de $H(z)$, ¿qué tienen de especial?¿Qué ocurre en los ceros de $H(z)$?
+
+La ecuación en diferencias desarrollada será:
+$$y(n) = \frac{1}{N}(x(n)+x(n-1)+x(n-2)+...+x(n-N-1)) $$
+
+Y la funcion de tranferencia:
+$$H(z)= \frac{1}{N}(1+z^{-1}+z^{-2}+...+z^{-N-1})$$
+
+
+*Para N=2*
+
+Como tenemos dos retrasos, el vector a será c(1,1) y por tanto, al ser $\frac{1}{N}$ el vector b es el N que es este caso es 2. 
+
+```{r}
+a = c(1,1)
+b = c(2)
+
+zplane(a,b)
+impz(a,b, 35)
+freqz(a,b)
+
+```
+
+*Para N=4*
+Como tenemos 4 retrasos, el vector a sera c(1,1,1,1) y por tanto, al ser $\frac{1}{N}$ el vector b es el N que es este caso es 4. 
+
+```{r}
+a = c(1,1,1,1)
+b = c(4)
+
+zplane(a,b)
+impz(a,b, 35)
+freqz(a,b)
+
+```
+
+
+*Para N=9*
+
+Como tenemos 9 retrasos, el vector a sera c(1,1,1,1,1,1,1,1,1) y por tanto, al ser $\frac{1}{N}$ el vector b es el N que es este caso es 9. 
+
+```{r}
+a = c(1,1,1,1,1,1,1,1,1)
+c = c(9)
+
+zplane(a,b)
+impz(a,b, 35)
+freqz(a,b)
+
+```
 
 
 
