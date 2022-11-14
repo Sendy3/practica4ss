@@ -255,6 +255,8 @@ Determina la respuesta impulsional y la respuesta en frecuencia del sistema para
 
 
 
+los ceros están en el circulo unidad y los polos están en 0
+
 ### 3.1.2 Eliminación del ruido de red
 
 A continuación, se implementará una aplicación práctica en Ingeniería Biomédica, la eliminación del ruido de red en un electrocardiograma (ECG). Para ello utiliza el fichero `ecg.mat` que contiene un ECG contaminado por ruido de 50 Hz. Diseña un sistema digital para eliminar dicha interferencia mediante un análisis de polos/zeros de la Transformada Z (el ECG se ha adquirido con una frecuencia de muestreo de ECG de 1000 Hz). Implementa diferentes alternativas para eliminar este ruido.
@@ -342,6 +344,7 @@ wuolah:
 Como mu está en el denominador del segundo filtro, si modificamos mu estaríamos modificando los polos. Además, podemos observar que la respuesta impulsional a medida que mu se acerca a 1 se va atenuando y se aproxima más y más a 0.
 
 Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza los filtros que has utilizado en la práctica
+
 
 
 
