@@ -302,10 +302,13 @@ freqz(a,b)
 
 ```
 
+**CONCLUSIONES:**
+En N= 9 obtenemos el filtro peine claramente. Con cada 0 va haciendo que el filtro sea mas paso bajo. Y eso significa que solo deja pasar las frecuencias mas cercanas a 0. Ademas, en el N=9 tenemos mas nodulos de bajada(tenemos 4 nodulos) y se atenua más en dB. 
 
+*¿Que tiene de especial?* Que los ceros están en el circulo unidad y los polos están en 0.
 
+*¿Que ocurre en los ceros de $H(z)$?* Con cada 0 va haciendo que el filtro sea mas paso bajo.
 
-los ceros están en el circulo unidad y los polos están en 0
 
 ### 3.1.2 Eliminación del ruido de red
 
