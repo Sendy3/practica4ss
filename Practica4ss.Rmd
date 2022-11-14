@@ -67,7 +67,8 @@ En esta práctica se estudia la respuesta en frecuencia de los sistemas LTI (dis
 # 2. Prelaboratorio:
 *Explica la relación entre la transformada de Fourier y la transformada Z*
 
-
+La transformada Z es una generalización de la transformada de Fourier de t discreto.
+Puede hallarse evaluando la transdormada Z $X(z)=e^{jw}$, o lo que es lo mismo, evaluando en el círculo unidad.
 
 ## 2.1. Sistemas discretos
 
@@ -80,17 +81,17 @@ $\hspace{4cm}H_2(z) = \frac{1}{H_1(z)}$
 ¿Cómo se relacionan $r$ y $w_0$ con los ceros y polos en el dominio de la transformada Z (`zplane`)? Determina la respuesta impulsional (`impz`) y la respuesta en frecuencia (`freqz`) para diferentes valores de $r$ (mayores, cercanos y menores que la unidad) y $w_0$. ¿Qué efectos tienen estos parámetros sobre la respuesta en frecuencia?
 
 **Paso 1 **
-- Determinar los vecores de cada entrada:
+- Determinar los vectores de cada entrada:
 
-Para H1:
-num1 = c(1, -2*r*cos(w0), r^2)
+Para $H_1$:
+num1 = c(1, $-2 \cdot r \cdot cos(w_0)$, $r^2$)
 den1 = c(1)
 
-Para H2:
+Para $H_2$:
 num2 = c(1)
-den2 = c(1, -2*r*cos(w0), r^2)
+den2 = c(1, $-2\cdot r\cdot cos(w_0)$, $r^2$)
 
-Y ahora le daremos valores a w0 con un r fijo:
+Y ahora le daremos valores a $w_0$ con un $r$ fijo:
 ```{r}
 #Para H1:
 
@@ -164,7 +165,7 @@ freqz(num,den)
 
 ```
 
-Y ahora le daremos valores a r con un w0 fijo:
+Y ahora le daremos valores a $r$ con un $w_0$ fijo:
 
 ```{r}
 #Para H1:
@@ -240,6 +241,14 @@ freqz(num,den)
 ```
 
 
+SOLUCIÓN:
+
+
+$r$ y $w_0$ se relacionan de tal manera que ambos determinan la posición de los ceros y los polos
+
+$r$ es la distancia al origen del plano complejo (módulo)
+
+$w_0$ determina el ángulo en el que se disponen
 
 \newpage
 
