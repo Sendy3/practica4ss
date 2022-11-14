@@ -102,7 +102,7 @@ num = c(1, -2*r*cos(w0), r^2)
 den = c(1)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -113,7 +113,7 @@ num = c(1, -2*r*cos(w0), r^2)
 den = c(1)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -124,7 +124,7 @@ num = c(1, -2*r*cos(w0), r^2)
 den = c(1)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -137,7 +137,7 @@ num = c(1)
 den = c(1, -2*r*cos(w0), r^2)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -148,7 +148,7 @@ num = c(1)
 den = c(1, -2*r*cos(w0), r^2)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -159,7 +159,7 @@ num = c(1)
 den = c(1, -2*r*cos(w0), r^2)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -177,7 +177,7 @@ num = c(1, -2*r*cos(w0), r^2)
 den = c(1)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -188,7 +188,7 @@ num = c(1, -2*r*cos(w0), r^2)
 den = c(1)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -199,7 +199,7 @@ num = c(1, -2*r*cos(w0), r^2)
 den = c(1)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -212,7 +212,7 @@ num = c(1)
 den = c(1, -2*r*cos(w0), r^2)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -223,7 +223,7 @@ num = c(1)
 den = c(1, -2*r*cos(w0), r^2)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
@@ -234,21 +234,14 @@ num = c(1)
 den = c(1, -2*r*cos(w0), r^2)
 
 zplane(num,den)
-impz(num,den, 10)
+impz(num,den, 35)
 freqz(num,den)
 
 
 ```
 
 
-SOLUCIÓN:
 
-
-$r$ y $w_0$ se relacionan de tal manera que ambos determinan la posición de los ceros y los polos
-
-$r$ es la distancia al origen del plano complejo (módulo)
-
-$w_0$ determina el ángulo en el que se disponen
 
 \newpage
 
@@ -277,3 +270,15 @@ En este ECG aparece otra interferencia importante que es una variación de la l�
 
 Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza los filtros que has utilizado en la práctica
 
+
+
+
+
+
+SOLUCIÓN:
+
+$r$ y $w_0$ se relacionan de tal manera que ambos determinan la posición de los ceros y los polos
+
+$r$ es la distancia al origen del plano complejo (módulo)
+
+$w_0$ determina el ángulo en el que se disponen
