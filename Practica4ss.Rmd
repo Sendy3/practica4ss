@@ -240,9 +240,6 @@ freqz(num,den)
 
 ```
 
-
-
-
 \newpage
 
 # 3. Laboratorio
@@ -254,6 +251,9 @@ Un sistema digital muy empleado como filtro paso-bajo es lo que se conoce como p
 $$y(n) = \frac{1}{N} \sum^{N-1}_{k=0} x(n-k)$$
 
 Determina la respuesta impulsional y la respuesta en frecuencia del sistema para diferentes N (2,4 y 9). Calcula los polos y ceros de $H(z)$, ¿qué tienen de especial?¿Qué ocurre en los ceros de $H(z)$?
+
+
+
 
 ### 3.1.2 Eliminación del ruido de red
 
