@@ -310,6 +310,7 @@ En N= 9 obtenemos el filtro peine claramente. Con cada 0 va haciendo que el filt
 *¿Que ocurre en los ceros de $H(z)$?* Con cada 0 va haciendo que el filtro sea mas paso bajo.
 
 
+
 ### 3.1.2 Eliminación del ruido de red
 
 A continuación, se implementará una aplicación práctica en Ingeniería Biomédica, la eliminación del ruido de red en un electrocardiograma (ECG). Para ello utiliza el fichero `ecg.mat` que contiene un ECG contaminado por ruido de 50 Hz. Diseña un sistema digital para eliminar dicha interferencia mediante un análisis de polos/zeros de la Transformada Z (el ECG se ha adquirido con una frecuencia de muestreo de ECG de 1000 Hz). Implementa diferentes alternativas para eliminar este ruido.
@@ -361,18 +362,6 @@ freqz(num1, den1)
 
 plot(y2, xlim=c(0,2500))
 
-mu <- 0.6
-
-num1 <- c(1,-1)
-den1 <- c(1, -mu)
-
-y2 <- filter(num1, den1, y1)
-zplane(num1, den1)
-impz(num1, den1, 35)
-freqz(num1, den1)
-
-plot(y2, xlim=c(0,2500))
-
 mu <- 0.3
 
 num1 <- c(1,-1)
@@ -390,13 +379,50 @@ plot(y2, xlim=c(0,2500))
 
 2. Determina la respuesta en frecuencia del sistema y razona lo obtenido.
 
+A medida que el parametro $\mu$ se va acercando al 0, larespuesta de la señal esta cada vez mas comprimida y se va acercando mas al 0 como se puede comprobar graicamente con la funcion plot. Ya que en $\mu= 0.9$ como pedia el enunciado, los valores obtenidos en la respuesta rondan entre -0.3 y 0.3, mientras que con $\mu= 0.3$ los valores rondan entre -0.05 y 0.05.
+
 3. ¿Qué controla el parámetro $\mu$?
-El parámetro mu controla los polos
 
-wuolah:
-Como mu está en el denominador del segundo filtro, si modificamos mu estaríamos modificando los polos. Además, podemos observar que la respuesta impulsional a medida que mu se acerca a 1 se va atenuando y se aproxima más y más a 0.
+El parámetro mu controla los polos, puesto que esta en el denominador de la funcion H(z). Además, se puede comprobar graficamete con la funcion zplane porque lo unico que cambia son las cruces(polos).
 
-Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza los filtros que has utilizado en la práctica
+
+Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza los filtros que has utilizado en la práctica.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
