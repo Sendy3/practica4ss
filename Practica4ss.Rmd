@@ -348,6 +348,11 @@ y1 <- filter(num, den, ecg)
 
 plot(y1, xlim=c(0,2500))
 
+bl1 <- as.data.frame(y1) # pasamos a data frame la variable que queremos representar
+indice2 = c(1:nrow(bl1)) #creamos un vector con el número de las filas que hay en nuestro df 
+bl2 = cbind(indice2,bl1)
+ggplot(bl2) + geom_line(aes(x= indice2, y= y1)) + ggtitle("Electrocardiograma") #xlim=c(0,2500)
+
 #Aplicamos el segundo filtro para distintos valores de mu y representamos la señal con los dos filtros
 
 mu <- 0.9
@@ -362,6 +367,12 @@ freqz(num1, den1)
 
 plot(y2, xlim=c(0,2500))
 
+bl1 <- as.data.frame(y2) # pasamos a data frame la variable que queremos representar
+indice2 = c(1:nrow(bl1)) #creamos un vector con el número de las filas que hay en nuestro df 
+bl2 = cbind(indice2,bl1)
+ggplot(bl2) + geom_line(aes(x= indice2, y= y2)) + ggtitle("Electrocardiograma con mu = 0.9") #xlim=c(0,2500)
+
+
 mu <- 0.3
 
 num1 <- c(1,-1)
@@ -373,6 +384,9 @@ impz(num1, den1, 35)
 freqz(num1, den1)
 
 plot(y2, xlim=c(0,2500))
+
+ggplot(bl2) + geom_line(aes(x= indice2, y= y2)) + ggtitle("Electrocardiograma con mu = 0.3") #xlim=c(0,2500)
+
 
 ```
 
