@@ -302,10 +302,14 @@ freqz(a,b)
 
 ```
 
+**CONCLUSIONES:**
+En N= 9 obtenemos el filtro peine claramente. Con cada 0 va haciendo que el filtro sea mas paso bajo. Y eso significa que solo deja pasar las frecuencias mas cercanas a 0. Ademas, en el N=9 tenemos mas nodulos de bajada(tenemos 4 nodulos) y se atenua más en dB. 
+
+*¿Que tiene de especial?* Que los ceros están en el circulo unidad y los polos están en 0.
+
+*¿Que ocurre en los ceros de $H(z)$?* Con cada 0 va haciendo que el filtro sea mas paso bajo.
 
 
-
-los ceros están en el circulo unidad y los polos están en 0
 
 ### 3.1.2 Eliminación del ruido de red
 
@@ -351,12 +355,12 @@ p1 <- filter(num, den, ecg)
 plot(p1, xlim=c(0,2500)) 
 
  
-y1_2 <- as.data.frame(p1)
-indice <- c(1:nrow(y1_2))
-y1_2 <- cbind(indice, y1_2)
-y1_2 <- as.data.frame(y1_2)
+y1_2 <- as.data.frame(p1) # pasamos a dataframe la variable que queremos representar
+indice <- c(1:nrow(y1_2)) #creamos un vector con el número de las filas que hay en nuestro df 
+y1_2 <- cbind(indice, y1_2) # unimos el vector del número de filas con la variable que queremos representar
+y1_2 <- as.data.frame(y1_2) # lo convertimos todo a dataframe
 
-ggplot(y1_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500)
+ggplot(y1_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma")
 
 #Aplicamos el segundo filtro para distintos valores de mu y representamos la señal con los dos filtros
 
@@ -371,12 +375,14 @@ impz(num1, den1, 35)
 freqz(num1, den1)
 
 plot(salida, xlim=c(0,2500))
-y2_2 <- as.data.frame(salida)
-indice <- c(1:nrow(y2_2))
-y2_2 <- cbind(indice, y2_2)
-y2_2 <- as.data.frame(y2_2)
 
-ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500)
+y2_2 <- as.data.frame(salida) # pasamos a dataframe la variable que queremos representar
+indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en nuestro df 
+y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable que queremos representar
+y2_2 <- as.data.frame(y2_2) # lo convertimos todo a dataframe
+
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.9") 
+
 
 mu <- 0.6
 
@@ -390,11 +396,13 @@ freqz(num1, den1)
 
 plot(salida, xlim=c(0,2500))
 
-y2_2 <- as.data.frame(salida)
-indice <- c(1:nrow(y2_2))
-y2_2 <- cbind(indice, y2_2)
-y2_2 <- as.data.frame(y2_2)
-ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500)
+y2_2 <- as.data.frame(salida) # pasamos a dataframe la variable que queremos representar
+indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en nuestro df 
+y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable que queremos representar
+y2_2 <- as.data.frame(y2_2) # lo convertimos todo a dataframe
+
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.6") 
+
 
 mu <- 0.3
 
@@ -407,30 +415,32 @@ impz(num1, den1, 35)
 freqz(num1, den1)
 
 plot(salida, xlim=c(0,2500))
-y2_2 <- as.data.frame(salida)
-indice <- c(1:nrow(y2_2))
-y2_2 <- cbind(indice, y2_2)
-y2_2 <- as.data.frame(y2_2)
-ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500)
+
+y2_2 <- as.data.frame(salida) # pasamos a dataframe la variable que queremos representar
+indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en nuestro df 
+y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable que queremos representar
+y2_2 <- as.data.frame(y2_2) # lo convertimos todo a dataframe
+
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.3")
+
 
 ```
 
 
 2. Determina la respuesta en frecuencia del sistema y razona lo obtenido.
 
+
 ```{r}
 #hacer la freqz
 ```
 
+A medida que el parametro $\mu$ se va acercando al 0, la respuesta de la señal esta cada vez mas comprimida y se va acercando más al 0 como se puede comprobar graficamente con la funcion plot. Ya que en $\mu= 0.9$ como pedia el enunciado, los valores obtenidos en la respuesta rondan entre -0.3 y 0.3, mientras que con $\mu= 0.3$ los valores rondan entre -0.05 y 0.05.
+
 
 3. ¿Qué controla el parámetro $\mu$?
-El parámetro mu controla los polos
 
-wuolah:
-Como mu está en el denominador del segundo filtro, si modificamos mu estaríamos modificando los polos. Además, podemos observar que la respuesta impulsional a medida que mu se acerca a 1 se va atenuando y se aproxima más y más a 0.
-
-Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza los filtros que has utilizado en la práctica
+El parámetro mu controla los polos, puesto que esta en el denominador de la funcion H(z). Además, se puede comprobar gráficamete con la función zplane porque lo único que cambia son las cruces (polos).
 
 
-
+Mediante el uso de la aplicación de: http://www.micromodeler.com/dsp/ visualiza los filtros que has utilizado en la práctica.
 
