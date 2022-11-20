@@ -316,15 +316,21 @@ En este ECG aparece otra interferencia importante que es una variación de la l�
 
 1. Compruébalo con la instrucción filter (considera $\mu=0.9$).
 
+
 ```{r}
-ecg <- readMat("./ecg.mat")
-ecg <- ecg$ecg
+ecg <- readMat("./ecg.mat")$ecg
+
+num <- c(1,-1)
+#den <- c(1, -mu)
 
 ruido <- 50
 muestreo <- 1000
+# 2*pi*freq
 w0 <- 2*pi*ruido/muestreo 
 
+#ceros
 rc <- 1
+# polos
 rp <- 1-(2*pi)/100
 
 x <- c(1,0,0,0,0,0,0)
@@ -338,11 +344,19 @@ impz(num, den, 35)
 
 freqz(num, den)
 
-y1 <- filter(num, den, ecg)
+p1 <- filter(num, den, ecg)
 
 # Representamos el ECG tras aplicar el primer filtro
 
-plot(y1, xlim=c(0,2500))
+plot(p1, xlim=c(0,2500)) 
+
+ 
+y1_2 <- as.data.frame(p1)
+indice <- c(1:nrow(y1_2))
+y1_2 <- cbind(indice, y1_2)
+y1_2 <- as.data.frame(y1_2)
+
+ggplot(y1_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500)
 
 #Aplicamos el segundo filtro para distintos valores de mu y representamos la señal con los dos filtros
 
@@ -351,41 +365,63 @@ mu <- 0.9
 num1 <- c(1,-1)
 den1 <- c(1, -mu)
 
-y2 <- filter(num1, den1, y1)
+salida <- filter(num1, den1, p1)
 zplane(num1, den1)
 impz(num1, den1, 35)
 freqz(num1, den1)
 
-plot(y2, xlim=c(0,2500))
+plot(salida, xlim=c(0,2500))
+y2_2 <- as.data.frame(salida)
+indice <- c(1:nrow(y2_2))
+y2_2 <- cbind(indice, y2_2)
+y2_2 <- as.data.frame(y2_2)
+
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500)
 
 mu <- 0.6
 
 num1 <- c(1,-1)
 den1 <- c(1, -mu)
 
-y2 <- filter(num1, den1, y1)
+salida <- filter(num1, den1, p1)
 zplane(num1, den1)
 impz(num1, den1, 35)
 freqz(num1, den1)
 
-plot(y2, xlim=c(0,2500))
+plot(salida, xlim=c(0,2500))
+
+y2_2 <- as.data.frame(salida)
+indice <- c(1:nrow(y2_2))
+y2_2 <- cbind(indice, y2_2)
+y2_2 <- as.data.frame(y2_2)
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500)
 
 mu <- 0.3
 
 num1 <- c(1,-1)
 den1 <- c(1, -mu)
 
-y2 <- filter(num1, den1, y1)
+salida <- filter(num1, den1, p1)
 zplane(num1, den1)
 impz(num1, den1, 35)
 freqz(num1, den1)
 
-plot(y2, xlim=c(0,2500))
+plot(salida, xlim=c(0,2500))
+y2_2 <- as.data.frame(salida)
+indice <- c(1:nrow(y2_2))
+y2_2 <- cbind(indice, y2_2)
+y2_2 <- as.data.frame(y2_2)
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500)
 
 ```
 
 
 2. Determina la respuesta en frecuencia del sistema y razona lo obtenido.
+
+```{r}
+#hacer la freqz
+```
+
 
 3. ¿Qué controla el parámetro $\mu$?
 El parámetro mu controla los polos
