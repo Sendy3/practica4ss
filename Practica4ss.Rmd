@@ -351,13 +351,16 @@ p1 <- filter(num, den, ecg)
 
  
 y1_2 <- as.data.frame(p1) # pasamos a dataframe la variable que queremos representar
-indice <- c(1:nrow(y1_2)) #creamos un vector con el número de las filas que hay en nuestro df 
-y1_2 <- cbind(indice, y1_2) # unimos el vector del número de filas con la variable que queremos representar
+indice <- c(1:nrow(y1_2)) #creamos un vector con el número de las filas que hay en
+# nuestro df 
+y1_2 <- cbind(indice, y1_2) # unimos el vector del número de filas con la variable 
+# que queremos representar
 y1_2 <- as.data.frame(y1_2) # lo convertimos todo a dataframe
 
 ggplot(y1_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma")
 
-#Aplicamos el segundo filtro para distintos valores de mu y representamos la señal con los dos filtros
+# Aplicamos el segundo filtro para distintos valores de mu y representamos la 
+# señal con los dos filtros
 
 mu <- 0.9
 
@@ -371,11 +374,14 @@ freqz(num1, den1)
 
 
 y2_2 <- as.data.frame(salida) # pasamos a dataframe la variable que queremos representar
-indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en nuestro df 
-y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable que queremos representar
+indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en
+# nuestro df 
+y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable
+# que queremos representar
 y2_2 <- as.data.frame(y2_2) # lo convertimos todo a dataframe
 
-ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.9") 
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) +
+  ggtitle("Electrocardiograma con mu = 0.9") 
 
 
 mu <- 0.2
@@ -390,11 +396,14 @@ freqz(num1, den1)
 
 
 y2_2 <- as.data.frame(salida) # pasamos a dataframe la variable que queremos representar
-indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en nuestro df 
-y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable que queremos representar
+indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en
+# nuestro df 
+y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable
+# que queremos representar
 y2_2 <- as.data.frame(y2_2) # lo convertimos todo a dataframe
 
-ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.2")
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) +
+  ggtitle("Electrocardiograma con mu = 0.2")
 
 
 ```
