@@ -324,9 +324,6 @@ En este ECG aparece otra interferencia importante que es una variación de la l�
 ```{r}
 ecg <- readMat("./ecg.mat")$ecg
 
-num <- c(1,-1)
-#den <- c(1, -mu)
-
 ruido <- 50
 muestreo <- 1000
 # 2*pi*freq
@@ -352,8 +349,6 @@ p1 <- filter(num, den, ecg)
 
 # Representamos el ECG tras aplicar el primer filtro
 
-plot(p1, xlim=c(0,2500)) 
-
  
 y1_2 <- as.data.frame(p1) # pasamos a dataframe la variable que queremos representar
 indice <- c(1:nrow(y1_2)) #creamos un vector con el número de las filas que hay en nuestro df 
@@ -374,7 +369,6 @@ zplane(num1, den1)
 impz(num1, den1, 35)
 freqz(num1, den1)
 
-plot(salida, xlim=c(0,2500))
 
 y2_2 <- as.data.frame(salida) # pasamos a dataframe la variable que queremos representar
 indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en nuestro df 
@@ -384,7 +378,7 @@ y2_2 <- as.data.frame(y2_2) # lo convertimos todo a dataframe
 ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.9") 
 
 
-mu <- 0.6
+mu <- 0.2
 
 num1 <- c(1,-1)
 den1 <- c(1, -mu)
@@ -394,34 +388,13 @@ zplane(num1, den1)
 impz(num1, den1, 35)
 freqz(num1, den1)
 
-plot(salida, xlim=c(0,2500))
 
 y2_2 <- as.data.frame(salida) # pasamos a dataframe la variable que queremos representar
 indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en nuestro df 
 y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable que queremos representar
 y2_2 <- as.data.frame(y2_2) # lo convertimos todo a dataframe
 
-ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.6") 
-
-
-mu <- 0.3
-
-num1 <- c(1,-1)
-den1 <- c(1, -mu)
-
-salida <- filter(num1, den1, p1)
-zplane(num1, den1)
-impz(num1, den1, 35)
-freqz(num1, den1)
-
-plot(salida, xlim=c(0,2500))
-
-y2_2 <- as.data.frame(salida) # pasamos a dataframe la variable que queremos representar
-indice <- c(1:nrow(y2_2)) #creamos un vector con el número de las filas que hay en nuestro df 
-y2_2 <- cbind(indice, y2_2) # unimos el vector del número de filas con la variable que queremos representar
-y2_2 <- as.data.frame(y2_2) # lo convertimos todo a dataframe
-
-ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.3")
+ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electrocardiograma con mu = 0.2")
 
 
 ```
@@ -429,10 +402,6 @@ ggplot(y2_2) + geom_line(aes(x=indice, y=x)) + xlim(0,2500) + ggtitle("Electroca
 
 2. Determina la respuesta en frecuencia del sistema y razona lo obtenido.
 
-
-```{r}
-#hacer la freqz
-```
 
 A medida que el parametro $\mu$ se va acercando al 0, la respuesta de la señal esta cada vez mas comprimida y se va acercando más al 0 como se puede comprobar graficamente con la funcion plot. Ya que en $\mu= 0.9$ como pedia el enunciado, los valores obtenidos en la respuesta rondan entre -0.3 y 0.3, mientras que con $\mu= 0.3$ los valores rondan entre -0.05 y 0.05.
 
